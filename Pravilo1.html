@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Математический тренажер "Проценты"</title>
+    <style>
+        /* Общие настройки страницы */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9; /* Светлый фон страницы */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Блок заголовка */
+        header {
+            width: 100%;
+            background-color: #ffffff;
+            text-align: center;
+            padding: 20px 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            z-index: 10;
+        }
+      * {
+            box-sizing: border-box;
+            margin: 0;
+            font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+        }
+      
+        .card {
+            max-width: 980px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            background: #ffffff;
+            border-radius: 48px;
+            padding: 32px 30px 40px;
+            box-shadow: 0 20px 40px rgba(0, 20, 40, 0.2), 0 8px 16px rgba(0, 0, 0, 0.06);
+            transition: 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+      h1 {
+            margin: 0;
+            color: #2c3e50;
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .badge {
+            background: #1e4a6b;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 4px 14px;
+            border-radius: 100px;
+            margin-left: 8px;
+        }
+        .rule-box {
+            background: #eef6fd;
+            border-left: 8px solid #1e6f9f;
+            padding: 18px 22px;
+            border-radius: 24px;
+            margin: 18px 0 28px 0;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        }
+        .rule-box p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #0a2a3f;
+            font-weight: 500;
+            margin: 0;
+        }
+        .rule-box strong {
+            color: #004b7c;
+            background: #d4e6f5;
+            padding: 3px 12px;
+            border-radius: 40px;
+            font-weight: 700;
+        }
+        .examples-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 24px 0 28px;
+        }
+        .example-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f8faff;
+            padding: 6px 18px 6px 22px;
+            border-radius: 60px;
+            border: 1px solid #dde9f5;
+            transition: 0.1s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+        }
+        .example-row:hover {
+            background: #f2f9ff;
+            border-color: #b6d2e8;
+        }
+        .example-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #0b2f47;
+            letter-spacing: 0.3px;
+            min-width: 150px;
+        }
+        .example-text span {
+            font-weight: 400;
+            color: #2a577a;
+        }
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .input-group label {
+            font-weight: 500;
+            color: #1f4b6b;
+            margin-right: 4px;
+        }
+        .input-group input {
+            width: 100px;
+            padding: 10px 8px;
+            border: 2px solid #cdddee;
+            border-radius: 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: center;
+            background: white;
+            transition: 0.2s;
+            color: #0a2f47;
+            outline: none;
+        }
+        .input-group input:focus {
+            border-color: #1f7bb0;
+            box-shadow: 0 0 0 4px rgba(31, 123, 176, 0.2);
+        }
+        .input-group input.correct {
+            border-color: #1f9d5a;
+            background: #e7f6ee;
+        }
+        .input-group input.incorrect {
+            border-color: #c74a4a;
+            background: #ffe9e9;
+        }
+        .input-group input:disabled {
+            background: #f0f5fb;
+            opacity: 0.8;
+        }
+        .result-badge {
+            font-size: 1.1rem;
+            font-weight: 600;
+            min-width: 48px;
+            text-align: right;
+            color: #1a4f73;
+        }
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-top: 14px;
+            border-top: 2px dashed #c7dcee;
+            padding-top: 26px;
+        }
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+        .btn {
+            border: none;
+            background: white;
+            padding: 14px 34px;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1d4a6b;
+            border: 2px solid #b7cfE6;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 4px 8px rgba(0, 20, 30, 0.04);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-primary {
+            background: #1e5f87;
+            border-color: #1e5f87;
+            color: white;
+            box-shadow: 0 8px 18px rgba(26, 85, 130, 0.25);
+        }
+        .btn-primary:hover {
+            background: #134a6b;
+            transform: scale(1.02);
+            border-color: #134a6b;
+            box-shadow: 0 10px 22px rgba(19, 74, 107, 0.3);
+        }
+        .btn-primary:disabled {
+            opacity: 0.5;
+            transform: none;
+            box-shadow: none;
+            pointer-events: none;
+        }
+        .btn-outline {
+            background: transparent;
+            border-color: #b1cde3;
+        }
+        .btn-outline:hover {
+            background: #e3effa;
+            border-color: #8ab3d4;
+        }
+        .score {
+            background: #dceafa;
+            padding: 10px 24px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #003057;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .score span {
+            background: white;
+            padding: 4px 14px;
+            border-radius: 60px;
+            min-width: 40px;
+            text-align: center;
+        }
+        .score .correct-count {
+            color: #1a7a44;
+        }
+        .score .wrong-count {
+            color: #b13e3e;
+        }
+        .footer-note {
+            font-size: 0.9rem;
+            color: #457396;
+            margin-top: 12px;
+            text-align: right;
+            opacity: 0.8;
+        }
+        @media (max-width: 600px) {
+            .card { padding: 24px 18px; }
+            .example-row { flex-wrap: wrap; gap: 8px; padding: 14px 16px; border-radius: 30px; }
+            .example-text { font-size: 1.1rem; min-width: 120px; }
+            .input-group input { width: 80px; }
+            .actions { flex-direction: column; align-items: stretch; }
+            .btn-group { justify-content: center; }
+            .btn { padding: 12px 22px; flex: 1; }
+            .score { justify-content: center; }
+        }
+    
+
+      
+
+        /* Адаптивность для мобильных телефонов */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.5rem; }
+            .nav-btn { 
+                font-size: 10px; 
+                padding: 8px 12px; 
+                max-width: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Заголовок сверху -->
+    <header>
+      <h1>  Математический тренажер "Проценты"</h1>
+    </header>
+
+  
+<div class="card" id="app">
+    <h1>
+        📐 Правило 1
+        <span class="badge"> % от числа</span>
+    </h1>
+
+    <div class="rule-box">
+        <p>
+            <strong>Чтобы найти процент от числа</strong> — нужно число умножить на процент и разделить на 100.
+            <br> 
+            <span style="background: #d4e2f0; padding: 2px 12px; border-radius: 30px; display: inline-block; margin-top: 6px;">
+                Пример: 20% от 80 = (80 · 20) / 100 = 16
+            </span>
+        </p>
+    </div>
+
+    <div class="examples-grid" id="examplesContainer">
+        <!-- примеры генерируются через js -->
+    </div>
+
+    <div class="actions">
+        <div class="btn-group">
+            <button class="btn btn-primary" id="checkBtn">✅ Проверить</button>
+            <button class="btn btn-outline" id="newBtn">🔄 Новые примеры</button>
+        </div>
+        <div class="score" id="scoreDisplay">
+            <span>✔️ <span class="correct-count" id="correctCount">0</span></span>
+            <span>❌ <span class="wrong-count" id="wrongCount">0</span></span>
+        </div>
+       <div class="btn-group">
+           <a href="Index.html" class="nav-btn btn-minsk">  
+          <button class="btn btn-outline" id="newBtn"> На главную</button></a>  
+        </div>
+    </div>
+    <div class="footer-note">* ответы — целые числа</div>
+</div>
+
+<script>
+    (function() {
+        // ---------- состояние ----------
+        let tasks = [];                 // массив { a, percent, answer }
+        let userAnswers = [];           // массив строк (введённые значения)
+        let checked = false;
+
+        const container = document.getElementById('examplesContainer');
+        const checkBtn = document.getElementById('checkBtn');
+        const newBtn = document.getElementById('newBtn');
+        const correctSpan = document.getElementById('correctCount');
+        const wrongSpan = document.getElementById('wrongCount');
+
+        // ---------- генерация примера (целый ответ) ----------
+        function generateTask() {
+            // стратегия: подбираем a и percent так, чтобы (a * percent) % 100 === 0
+            // но при этом числа были в разумных пределах, разнообразные
+            let a, percent, answer;
+            let attempts = 0;
+            const maxAttempts = 200;
+            do {
+                // процент от 5 до 95 (красивые проценты)
+                percent = Math.floor(Math.random() * 91) + 5;  // 5..95
+                // число от 10 до 200, чтобы ответ не слишком огромный
+                a = Math.floor(Math.random() * 191) + 10;      // 10..200
+
+                // Проверяем, что (a * percent) делится на 100 нацело
+                const product = a * percent;
+                if (product % 100 === 0) {
+                    answer = product / 100;
+                    // дополнительно: ответ не слишком большой (<= 200) и > 0
+                    if (answer > 0 && answer <= 300 && Number.isInteger(answer)) {
+                        break;
+                    }
+                }
+                attempts++;
+                // если долго не получается — принудительно подберём
+                if (attempts > maxAttempts) {
+                    // запасной вариант: гарантированный целый ответ
+                    percent = 25;
+                    a = 40 + Math.floor(Math.random() * 20) * 4;  // 40,44,48,... кратное 4
+                    answer = (a * percent) / 100;
+                    break;
+                }
+            } while (true);
+
+            return { a, percent, answer };
+        }
+
+        // ---------- генерация 10 заданий ----------
+        function generateTasks(count = 10) {
+            const newTasks = [];
+            for (let i = 0; i < count; i++) {
+                newTasks.push(generateTask());
+            }
+            return newTasks;
+        }
+
+        // ---------- отрисовка примеров ----------
+        function renderTasks() {
+            // очищаем контейнер
+            container.innerHTML = '';
+            userAnswers = []; // сброс введённых значений
+
+            tasks.forEach((task, index) => {
+                const row = document.createElement('div');
+                row.className = 'example-row';
+
+                // текст примера
+                const textDiv = document.createElement('div');
+                textDiv.className = 'example-text';
+                textDiv.innerHTML = `${task.percent}% от ${task.a} = `;
+
+                // группа input + скрытый badge (для отображения результата)
+                const inputGroup = document.createElement('div');
+                inputGroup.className = 'input-group';
+
+                const label = document.createElement('label');
+                label.textContent = '?';
+
+                const input = document.createElement('input');
+                input.type = 'number';
+                input.id = `input_${index}`;
+                input.dataset.index = index;
+                input.placeholder = 'ответ';
+                input.value = '';
+                input.disabled = false;
+                // сохраним ссылку на input в tasks для удобства
+                task.inputElement = input;
+
+                // при вводе обновляем массив userAnswers и сбрасываем checked состояние (если было)
+                input.addEventListener('input', function(e) {
+                    if (checked) {
+                        // если уже проверено, при изменении сбрасываем подсветку и флаг
+                        checked = false;
+                        // убираем классы подсветки у всех инпутов
+                        document.querySelectorAll('.example-row input').forEach(inp => {
+                            inp.classList.remove('correct', 'incorrect');
+                        });
+                        // также обновляем счётчики (показываем 0/0 или прочерк)
+                        correctSpan.textContent = '?';
+                        wrongSpan.textContent = '?';
+                        // но не очищаем введённые значения
+                    }
+                    // обновляем массив ответов
+                    userAnswers[index] = e.target.value.trim();
+                });
+
+                // небольшой span для отображения правильного ответа (пока скрыт)
+                const resultSpan = document.createElement('span');
+                resultSpan.className = 'result-badge';
+                resultSpan.textContent = '';
+                resultSpan.style.display = 'none';
+
+                inputGroup.appendChild(label);
+                inputGroup.appendChild(input);
+                inputGroup.appendChild(resultSpan);
+
+                row.appendChild(textDiv);
+                row.appendChild(inputGroup);
+
+                // сохраним ссылки в task для проверки
+                task.resultSpan = resultSpan;
+                task.rowElement = row;
+
+                container.appendChild(row);
+                // инициализируем userAnswers
+                userAnswers[index] = '';
+            });
+
+            // сбрасываем счётчики
+            correctSpan.textContent = '0';
+            wrongSpan.textContent = '0';
+            checked = false;
+            // убираем disabled с кнопки проверить
+            checkBtn.disabled = false;
+        }
+
+        // ---------- проверка ----------
+        function checkAnswers() {
+            let correct = 0;
+            let wrong = 0;
+
+            tasks.forEach((task, idx) => {
+                const input = task.inputElement;
+                const resultSpan = task.resultSpan;
+                const userValue = userAnswers[idx] !== undefined ? userAnswers[idx].trim() : '';
+
+                // Убираем старые классы
+                input.classList.remove('correct', 'incorrect');
+
+                // Проверяем, что введено число
+                const userNum = parseFloat(userValue);
+                const isNumber = !isNaN(userNum) && userValue !== '';
+
+                // Сравниваем с правильным ответом
+                const isCorrect = isNumber && (userNum === task.answer);
+
+                if (isCorrect) {
+                    input.classList.add('correct');
+                    correct++;
+                } else {
+                    input.classList.add('incorrect');
+                    wrong++;
+                }
+
+                // показываем правильный ответ рядом
+                resultSpan.style.display = 'inline';
+                resultSpan.textContent = isCorrect ? '✅' : `❌ ${task.answer}`;
+                resultSpan.style.color = isCorrect ? '#1f7a44' : '#b13e3e';
+                input.disabled = true;  // блокируем изменение после проверки
+            });
+
+            // обновляем счётчики
+            correctSpan.textContent = correct;
+            wrongSpan.textContent = wrong;
+            checked = true;
+            checkBtn.disabled = true;   // блокируем повторную проверку до новых примеров или изменения
+        }
+
+        // ---------- сброс/генерация новых примеров ----------
+        function resetAndGenerate() {
+            // генерируем новые задания
+            tasks = generateTasks(10);
+            renderTasks();
+            // сбрасываем флаг проверки
+            checked = false;
+            checkBtn.disabled = false;
+            // сброс счётчиков
+            correctSpan.textContent = '0';
+            wrongSpan.textContent = '0';
+            // дополнительно убираем все классы и скрытые результаты (renderTasks уже делает)
+        }
+
+        // ---------- инициализация + обработчики ----------
+        function init() {
+            // первая генерация
+            tasks = generateTasks(10);
+            renderTasks();
+
+            // обработчики кнопок
+            checkBtn.addEventListener('click', function(e) {
+                // если уже проверено — не даём повторно проверить (кнопка disabled)
+                if (checked) return;
+                // дополнительно: если есть пустые поля, но всё равно проверяем (считаем неверными)
+                checkAnswers();
+            });
+
+            newBtn.addEventListener('click', function(e) {
+                resetAndGenerate();
+            });
+
+            // дополнительно: если пользователь меняет поля после проверки — кнопка разблокируется? 
+            // это уже реализовано в input событиях, но проверим
+            // также обработчик на все поля — сброс checked и подсветки
+            document.addEventListener('input', function(e) {
+                if (e.target.tagName === 'INPUT' && e.target.closest('.example-row')) {
+                    if (checked) {
+                        // сбросим флаг, уберём подсветку
+                        checked = false;
+                        checkBtn.disabled = false;
+                        // убираем классы у всех инпутов и скрываем подсказки
+                        document.querySelectorAll('.example-row input').forEach(inp => {
+                            inp.classList.remove('correct', 'incorrect');
+                            inp.disabled = false;
+                        });
+                        document.querySelectorAll('.result-badge').forEach(el => {
+                            el.style.display = 'none';
+                        });
+                        correctSpan.textContent = '0';
+                        wrongSpan.textContent = '0';
+                    }
+                }
+            });
+        }
+
+        init();
+    })();
+</script>
+
+    <div class="map-container">
+      
+    </div>
+
+</body>
+</html>
+

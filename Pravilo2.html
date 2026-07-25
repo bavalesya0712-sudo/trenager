@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Математический тренажер "Проценты"</title>
+    <style>
+        /* Общие настройки страницы */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9; /* Светлый фон страницы */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Блок заголовка */
+        header {
+            width: 100%;
+            background-color: #ffffff;
+            text-align: center;
+            padding: 20px 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            z-index: 10;
+        }
+      * {
+            box-sizing: border-box;
+            margin: 0;
+            font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+        }
+      
+        .card {
+            max-width: 980px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            background: #ffffff;
+            border-radius: 48px;
+            padding: 32px 30px 40px;
+            box-shadow: 0 20px 40px rgba(0, 20, 40, 0.2), 0 8px 16px rgba(0, 0, 0, 0.06);
+            transition: 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+      h1 {
+            margin: 0;
+            color: #2c3e50;
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .badge {
+            background: #1e4a6b;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 4px 14px;
+            border-radius: 100px;
+            margin-left: 8px;
+        }
+        .rule-box {
+            background: #eef6fd;
+            border-left: 8px solid #1e6f9f;
+            padding: 18px 22px;
+            border-radius: 24px;
+            margin: 18px 0 28px 0;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        }
+        .rule-box p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #0a2a3f;
+            font-weight: 500;
+            margin: 0;
+        }
+        .rule-box strong {
+            color: #004b7c;
+            background: #d4e6f5;
+            padding: 3px 12px;
+            border-radius: 40px;
+            font-weight: 700;
+        }
+        .examples-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 24px 0 28px;
+        }
+        .example-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f8faff;
+            padding: 6px 18px 6px 22px;
+            border-radius: 60px;
+            border: 1px solid #dde9f5;
+            transition: 0.1s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+        }
+        .example-row:hover {
+            background: #f2f9ff;
+            border-color: #b6d2e8;
+        }
+        .example-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #0b2f47;
+            letter-spacing: 0.3px;
+            min-width: 150px;
+        }
+        .example-text span {
+            font-weight: 400;
+            color: #2a577a;
+        }
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .input-group label {
+            font-weight: 500;
+            color: #1f4b6b;
+            margin-right: 4px;
+        }
+        .input-group input {
+            width: 100px;
+            padding: 10px 8px;
+            border: 2px solid #cdddee;
+            border-radius: 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: center;
+            background: white;
+            transition: 0.2s;
+            color: #0a2f47;
+            outline: none;
+        }
+        .input-group input:focus {
+            border-color: #1f7bb0;
+            box-shadow: 0 0 0 4px rgba(31, 123, 176, 0.2);
+        }
+        .input-group input.correct {
+            border-color: #1f9d5a;
+            background: #e7f6ee;
+        }
+        .input-group input.incorrect {
+            border-color: #c74a4a;
+            background: #ffe9e9;
+        }
+        .input-group input:disabled {
+            background: #f0f5fb;
+            opacity: 0.8;
+        }
+        .result-badge {
+            font-size: 1.1rem;
+            font-weight: 600;
+            min-width: 48px;
+            text-align: right;
+            color: #1a4f73;
+        }
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-top: 14px;
+            border-top: 2px dashed #c7dcee;
+            padding-top: 26px;
+        }
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+        .btn {
+            border: none;
+            background: white;
+            padding: 14px 34px;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1d4a6b;
+            border: 2px solid #b7cfE6;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 4px 8px rgba(0, 20, 30, 0.04);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-primary {
+            background: #1e5f87;
+            border-color: #1e5f87;
+            color: white;
+            box-shadow: 0 8px 18px rgba(26, 85, 130, 0.25);
+        }
+        .btn-primary:hover {
+            background: #134a6b;
+            transform: scale(1.02);
+            border-color: #134a6b;
+            box-shadow: 0 10px 22px rgba(19, 74, 107, 0.3);
+        }
+        .btn-primary:disabled {
+            opacity: 0.5;
+            transform: none;
+            box-shadow: none;
+            pointer-events: none;
+        }
+        .btn-outline {
+            background: transparent;
+            border-color: #b1cde3;
+        }
+        .btn-outline:hover {
+            background: #e3effa;
+            border-color: #8ab3d4;
+        }
+        .score {
+            background: #dceafa;
+            padding: 10px 24px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #003057;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .score span {
+            background: white;
+            padding: 4px 14px;
+            border-radius: 60px;
+            min-width: 40px;
+            text-align: center;
+        }
+        .score .correct-count {
+            color: #1a7a44;
+        }
+        .score .wrong-count {
+            color: #b13e3e;
+        }
+        .footer-note {
+            font-size: 0.9rem;
+            color: #457396;
+            margin-top: 12px;
+            text-align: right;
+            opacity: 0.8;
+        }
+        @media (max-width: 600px) {
+            .card { padding: 24px 18px; }
+            .example-row { flex-wrap: wrap; gap: 8px; padding: 14px 16px; border-radius: 30px; }
+            .example-text { font-size: 1.1rem; min-width: 120px; }
+            .input-group input { width: 80px; }
+            .actions { flex-direction: column; align-items: stretch; }
+            .btn-group { justify-content: center; }
+            .btn { padding: 12px 22px; flex: 1; }
+            .score { justify-content: center; }
+        }
+    
+
+      
+
+        /* Адаптивность для мобильных телефонов */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.5rem; }
+            .nav-btn { 
+                font-size: 10px; 
+                padding: 8px 12px; 
+                max-width: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Заголовок сверху -->
+    <header>
+      <h1>  Математический тренажер "Проценты"</h1>
+    </header>
+
+  <div class="card" id="app">
+    <h1>
+        🔢 Правило 2
+        <span class="badge">число по проценту</span>
+    </h1>
+
+    <div class="rule-box">
+        <p>
+            <strong>Чтобы найти число по его проценту</strong> — нужно известную часть разделить на процент и умножить на 100.
+            <br> 
+            <span class="example-highlight">
+                Пример: если 25% числа равны 40, то число = (40 ÷ 25) · 100 = 160
+            </span>
+        </p>
+    </div>
+
+    <div class="examples-grid" id="examplesContainer">
+        <!-- примеры генерируются через js -->
+    </div>
+
+    <div class="actions">
+        <div class="btn-group">
+            <button class="btn btn-primary" id="checkBtn">✅ Проверить</button>
+            <button class="btn btn-outline" id="newBtn">🔄 Новые примеры</button>
+        </div>
+        <div class="score" id="scoreDisplay">
+            <span>✔️ <span class="correct-count" id="correctCount">0</span></span>
+            <span>❌ <span class="wrong-count" id="wrongCount">0</span></span>
+        </div>
+       <div class="btn-group">
+           <a href="Index.html" class="nav-btn btn-minsk">  
+          <button class="btn btn-outline" id="newBtn"> На главную</button></a>  
+        </div>
+    </div>
+    <div class="footer-note">* все ответы — целые числа</div>
+</div>
+
+<script>
+    (function() {
+        // ---------- состояние ----------
+        let tasks = [];                 // массив { knownPart, percent, number }
+        let userAnswers = [];           
+        let checked = false;
+
+        const container = document.getElementById('examplesContainer');
+        const checkBtn = document.getElementById('checkBtn');
+        const newBtn = document.getElementById('newBtn');
+        const correctSpan = document.getElementById('correctCount');
+        const wrongSpan = document.getElementById('wrongCount');
+
+        // ---------- генерация задания (число по проценту) с целым ответом ----------
+        function generateTask() {
+            // Ищем такие числа, чтобы искомое число (number) было целым, 
+            // известная часть (knownPart) = number * percent / 100 тоже целая.
+            // Процент от 5 до 95.
+            let percent, number, knownPart;
+            let attempts = 0;
+            const maxAttempts = 300;
+
+            do {
+                percent = Math.floor(Math.random() * 91) + 5;  // 5..95
+                // Искомое число (целое) от 20 до 300
+                number = Math.floor(Math.random() * 281) + 20; // 20..300
+
+                // Проверяем, что известная часть (number * percent / 100) — целое число
+                const product = number * percent;
+                if (product % 100 === 0) {
+                    knownPart = product / 100;
+                    // дополнительно: известная часть должна быть > 0 и не слишком маленькой
+                    if (knownPart > 0 && knownPart <= 250 && Number.isInteger(knownPart)) {
+                        break;
+                    }
+                }
+                attempts++;
+                // если долго не получается — принудительно подбираем гарантированный вариант
+                if (attempts > maxAttempts) {
+                    percent = 20 + Math.floor(Math.random() * 20) * 5; // 20,40,60,80,100 (но 100 не берём)
+                    if (percent > 100) percent = 80;
+                    number = 50 + Math.floor(Math.random() * 20) * 5;  // 50,55,60,... кратное 5
+                    // чтобы knownPart был целым: number * percent / 100
+                    if ((number * percent) % 100 === 0) {
+                        knownPart = (number * percent) / 100;
+                    } else {
+                        // подгоняем
+                        number = 100;
+                        percent = 25;
+                        knownPart = 25;
+                    }
+                    break;
+                }
+            } while (true);
+
+            return { knownPart, percent, number };
+        }
+
+        // ---------- генерация 10 заданий ----------
+        function generateTasks(count = 10) {
+            const newTasks = [];
+            for (let i = 0; i < count; i++) {
+                newTasks.push(generateTask());
+            }
+            return newTasks;
+        }
+
+        // ---------- отрисовка примеров ----------
+        function renderTasks() {
+            container.innerHTML = '';
+            userAnswers = [];
+
+            tasks.forEach((task, index) => {
+                const row = document.createElement('div');
+                row.className = 'example-row';
+
+                // текст примера: "Известно: X% от числа = Y. Найти число."
+                const textDiv = document.createElement('div');
+                textDiv.className = 'example-text';
+                textDiv.innerHTML = `${task.percent}% от числа = ${task.knownPart}  →  число = `;
+
+                // группа input + badge
+                const inputGroup = document.createElement('div');
+                inputGroup.className = 'input-group';
+
+                const label = document.createElement('label');
+                label.textContent = '?';
+
+                const input = document.createElement('input');
+                input.type = 'number';
+                input.id = `input_${index}`;
+                input.dataset.index = index;
+                input.placeholder = 'число';
+                input.value = '';
+                input.disabled = false;
+                task.inputElement = input;
+
+                input.addEventListener('input', function(e) {
+                    if (checked) {
+                        checked = false;
+                        document.querySelectorAll('.example-row input').forEach(inp => {
+                            inp.classList.remove('correct', 'incorrect');
+                            inp.disabled = false;
+                        });
+                        document.querySelectorAll('.result-badge').forEach(el => {
+                            el.style.display = 'none';
+                        });
+                        correctSpan.textContent = '0';
+                        wrongSpan.textContent = '0';
+                        checkBtn.disabled = false;
+                    }
+                    userAnswers[index] = e.target.value.trim();
+                });
+
+                const resultSpan = document.createElement('span');
+                resultSpan.className = 'result-badge';
+                resultSpan.textContent = '';
+                resultSpan.style.display = 'none';
+
+                inputGroup.appendChild(label);
+                inputGroup.appendChild(input);
+                inputGroup.appendChild(resultSpan);
+
+                row.appendChild(textDiv);
+                row.appendChild(inputGroup);
+
+                task.resultSpan = resultSpan;
+                task.rowElement = row;
+
+                container.appendChild(row);
+                userAnswers[index] = '';
+            });
+
+            correctSpan.textContent = '0';
+            wrongSpan.textContent = '0';
+            checked = false;
+            checkBtn.disabled = false;
+        }
+
+        // ---------- проверка ----------
+        function checkAnswers() {
+            let correct = 0;
+            let wrong = 0;
+
+            tasks.forEach((task, idx) => {
+                const input = task.inputElement;
+                const resultSpan = task.resultSpan;
+                const userValue = userAnswers[idx] !== undefined ? userAnswers[idx].trim() : '';
+
+                input.classList.remove('correct', 'incorrect');
+
+                const userNum = parseFloat(userValue);
+                const isNumber = !isNaN(userNum) && userValue !== '';
+                const isCorrect = isNumber && (userNum === task.number);
+
+                if (isCorrect) {
+                    input.classList.add('correct');
+                    correct++;
+                } else {
+                    input.classList.add('incorrect');
+                    wrong++;
+                }
+
+                resultSpan.style.display = 'inline';
+                resultSpan.textContent = isCorrect ? '✅' : `❌ ${task.number}`;
+                resultSpan.style.color = isCorrect ? '#1f7a44' : '#b13e3e';
+                input.disabled = true;
+            });
+
+            correctSpan.textContent = correct;
+            wrongSpan.textContent = wrong;
+            checked = true;
+            checkBtn.disabled = true;
+        }
+
+        // ---------- сброс / новые примеры ----------
+        function resetAndGenerate() {
+            tasks = generateTasks(10);
+            renderTasks();
+            checked = false;
+            checkBtn.disabled = false;
+            correctSpan.textContent = '0';
+            wrongSpan.textContent = '0';
+        }
+
+        // ---------- инициализация ----------
+        function init() {
+            tasks = generateTasks(10);
+            renderTasks();
+
+            checkBtn.addEventListener('click', function(e) {
+                if (checked) return;
+                checkAnswers();
+            });
+
+            newBtn.addEventListener('click', function(e) {
+                resetAndGenerate();
+            });
+
+            // глобальный обработчик для сброса при изменении полей (уже есть в input)
+        }
+
+        init();
+    })();
+</script>
+    <div class="map-container">
+      
+    </div>
+
+</body>
+</html>
+

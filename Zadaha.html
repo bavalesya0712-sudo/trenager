@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Все сборники · Проценты 6–9 класс</title>
+    <style>
+  /* Общие настройки страницы */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9; /* Светлый фон страницы */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Блок заголовка */
+        header {
+            width: 100%;
+            background-color: #ffffff;
+            text-align: center;
+            padding: 20px 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            z-index: 10;
+        }
+
+        h1 {
+            margin: 0;
+            color: #2c3e50;
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+      
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 15px;
+        }
+        .nav-class {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 20px;
+            margin-bottom: 28px;
+            padding: 12px 20px;
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 4px 12px rgba(0,20,40,0.06);
+            border: 1px solid #e2ecf5;
+            justify-content: center;
+        }
+        .nav-class a {
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 6px 18px;
+            border-radius: 40px;
+            background: #eef4fa;
+            color: #1a4b6a;
+            transition: 0.15s;
+            border: 1px solid transparent;
+        }
+        .nav-class a:hover {
+            background: #d4e3f0;
+        }
+        .nav-class a.active {
+            background: #1f6f97;
+            color: white;
+            border-color: #1f6f97;
+        }
+       
+        .subhead {
+            color: #2c5f7a;
+            margin-left: 24px;
+            margin-bottom: 28px;
+            font-weight: 400;
+            border-bottom: 1px solid #d0dfeb;
+            padding-bottom: 12px;
+        }
+        .task-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,20,40,0.06);
+            padding: 22px 24px;
+            margin-bottom: 28px;
+            transition: 0.15s;
+            border: 1px solid #e7edf4;
+        }
+        .task-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 14px;
+        }
+        .task-id {
+            background: #dceaf3;
+            color: #1c5777;
+            font-weight: 600;
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 30px;
+            letter-spacing: 0.3px;
+        }
+        .task-category {
+            background: #eef4fa;
+            font-size: 0.75rem;
+            color: #2a5f7a;
+            padding: 4px 12px;
+            border-radius: 30px;
+        }
+        .task-text {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin: 12px 0 18px 0;
+            padding: 8px 0;
+            color: #0b2a3b;
+            font-weight: 500;
+        }
+        .answer-area {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 15px 20px;
+            background: #f8faff;
+            padding: 16px 18px;
+            border-radius: 18px;
+            border: 1px solid #dde7f0;
+            margin: 10px 0 12px 0;
+        }
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            flex: 1;
+        }
+        .input-group label {
+            font-weight: 500;
+            color: #1f4a66;
+        }
+        .input-group input {
+            padding: 8px 14px;
+            border-radius: 40px;
+            border: 1px solid #c7d7e5;
+            background: white;
+            font-size: 0.95rem;
+            min-width: 120px;
+            flex: 1;
+            transition: 0.15s;
+        }
+        .input-group input:focus {
+            outline: 2px solid #6ea6c9;
+            border-color: transparent;
+        }
+        .attempt-badge {
+            background: #eaf0f6;
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            color: #1c4f6b;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+            margin-top: 6px;
+        }
+        .btn {
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.15s;
+            border: 1px solid transparent;
+            letter-spacing: 0.3px;
+        }
+        .btn-primary {
+            background: #1f6f97;
+            color: white;
+            box-shadow: 0 2px 6px rgba(26, 90, 130, 0.2);
+        }
+        .btn-primary:hover:not(:disabled) {
+            background: #135a7e;
+            transform: scale(0.97);
+        }
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: #8cb0c7;
+            box-shadow: none;
+            transform: none;
+        }
+        .btn-success {
+            background: #2b7a5e;
+            color: white;
+        }
+        .btn-success:hover:not(:disabled) {
+            background: #1e634b;
+        }
+        .btn-success:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            background: #8ab3a0;
+        }
+        .feedback {
+            margin-top: 14px;
+            padding: 12px 16px;
+            border-radius: 16px;
+            background: #f2f8fe;
+            border-left: 5px solid #3f8db0;
+            min-height: 50px;
+        }
+        .feedback .solution-block {
+            background: #eef3f9;
+            padding: 16px 20px;
+            border-radius: 14px;
+            margin-top: 10px;
+            font-size: 0.95rem;
+            border: 1px solid #c5d9e8;
+            color: #003153;
+            white-space: pre-wrap;
+            line-height: 1.8;
+        }
+        .status-msg {
+            font-weight: 500;
+        }
+        .text-success { color: #1b7e4b; }
+        .text-danger { color: #b34141; }
+        .text-warning { color: #a7691a; }
+        .text-info { color: #1a6b8a; }
+        .footer-meta {
+            text-align: right;
+            font-size: 0.75rem;
+            color: #6c889e;
+            margin-top: 30px;
+            border-top: 1px solid #d0dfeb;
+            padding-top: 16px;
+        }
+        .class-section {
+            display: block;
+        }
+        .class-section.hidden {
+            display: none;
+        }
+        .class-label {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #0b3b5c;
+            margin: 20px 0 10px 0;
+            padding-left: 6px;
+        }
+        .class-label small {
+            font-weight: 400;
+            font-size: 1rem;
+            color: #3b6a88;
+            margin-left: 12px;
+        }
+
+        /* Кнопка "На главную" */
+        .home-button-wrapper {
+            text-align: center;
+            margin: 40px 0 30px 0;
+        }
+        .btn-home {
+            background: #2c3e50;
+            color: white;
+            padding: 14px 40px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.2s;
+            box-shadow: 0 4px 12px rgba(44, 62, 80, 0.3);
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-home:hover {
+            background: #1a2a3a;
+            transform: scale(1.03);
+            box-shadow: 0 6px 18px rgba(44, 62, 80, 0.4);
+        }
+        .btn-home:active {
+            transform: scale(0.97);
+        }
+    </style>
+</head>
+<body>
+  <!-- Заголовок сверху -->
+    <header>
+        <h1>Математический тренажер "Проценты"</h1>
+    </header>
+
+<div class="container">
+    <h1>📊 Задачи на проценты по классам</h1>  
+   
+    <div class="nav-class" id="classNav">
+        <a href="#" data-class="6" class="active">6 класс</a>
+        <a href="#" data-class="7">7 класс</a>
+        <a href="#" data-class="8">8 класс</a>
+        <a href="#" data-class="9">9 класс</a>
+     </div>
+ 
+    <div id="class6" class="class-section"></div>
+    <div id="class7" class="class-section hidden"></div>
+    <div id="class8" class="class-section hidden"></div>
+    <div id="class9" class="class-section hidden"></div>
+
+    <!-- Кнопка "На главную" внизу -->
+    <div class="home-button-wrapper">
+        <a href="Index.html" class="btn-home">🏠 На главную</a>
+    </div>
+  
+</div>
+
+
+<script>
+    (function() {
+        // ---------- ДАННЫЕ ЗАДАЧ (все классы) ----------
+        const taskBanks = {
+            6: [
+                { id: 1, category: 'Проценты от числа', text: 'Найди 12% от 250.', answer: 30, type: 'number', solution: '1) 12% = 12/100 = 0,12\n2) 250 · 0,12 = 30\n\n✅ Ответ: 30' },
+                { id: 2, category: 'Проценты от числа', text: 'В классе 40 учеников. 25% из них занимаются в спортивной секции. Сколько это человек?', answer: 10, type: 'number', solution: '1) 25% = 25/100 = 0,25\n2) 40 · 0,25 = 10\n\n✅ Ответ: 10 человек' },
+                { id: 3, category: 'Проценты от числа', text: 'Сколько составляет 6,5% от 800?', answer: 52, type: 'number', solution: '1) 6,5% = 6,5/100 = 0,065\n2) 800 · 0,065 = 52\n\n✅ Ответ: 52' },
+                { id: 4, category: 'Проценты от числа', text: 'Магазин сделал скидку 30% на куртку, стоившую 5000 рублей. Сколько рублей составила скидка?', answer: 1500, type: 'number', solution: '1) 30% = 30/100 = 0,3\n2) 5000 · 0,3 = 1500\n\n✅ Ответ: 1500 рублей' },
+                { id: 5, category: 'Проценты от числа', text: 'В мешке было 60 кг муки. 15% ушло на выпечку. Сколько килограммов муки ушло?', answer: 9, type: 'number', solution: '1) 15% = 15/100 = 0,15\n2) 60 · 0,15 = 9\n\n✅ Ответ: 9 кг' },
+                { id: 6, category: 'Число по проценту', text: '20% от некоторого числа равны 80. Найди это число.', answer: 400, type: 'number', solution: '1) 20% = 0,2\n2) 80 / 0,2 = 400\n\n✅ Ответ: 400' },
+                { id: 7, category: 'Число по проценту', text: '12% от числа равны 36. Найди число.', answer: 300, type: 'number', solution: '1) 12% = 0,12\n2) 36 / 0,12 = 300\n\n✅ Ответ: 300' },
+                { id: 8, category: 'Число по проценту', text: '5% от суммы составляют 75 рублей. Какова вся сумма?', answer: 1500, type: 'number', solution: '1) 5% = 0,05\n2) 75 / 0,05 = 1500\n\n✅ Ответ: 1500 рублей' },
+                { id: 9, category: 'Число по проценту', text: '40% от числа равны 120. Найди число.', answer: 300, type: 'number', solution: '1) 40% = 0,4\n2) 120 / 0,4 = 300\n\n✅ Ответ: 300' },
+                { id: 10, category: 'Число по проценту', text: '80% от массы яблок составляют 24 кг. Найди всю массу яблок.', answer: 30, type: 'number', solution: '1) 80% = 0,8\n2) 24 / 0,8 = 30\n\n✅ Ответ: 30 кг' },
+                { id: 11, category: 'Процентное отношение', text: 'В классе 12 девочек и 18 мальчиков. Какой процент учеников составляют девочки?', answer: '40%', type: 'text', solution: '1) Всего учеников: 12 + 18 = 30\n2) Девочки: 12/30 · 100 = 40%\n\n✅ Ответ: 40%' },
+                { id: 12, category: 'Процентное отношение', text: 'В корзине 15 кг яблок и 5 кг груш. Сколько процентов от всей массы составляют груши?', answer: '25%', type: 'text', solution: '1) Всего: 15 + 5 = 20 кг\n2) Груши: 5/20 · 100 = 25%\n\n✅ Ответ: 25%' },
+                { id: 13, category: 'Процентное отношение', text: 'Из 300 учащихся 90 занимаются музыкой. Сколько это процентов?', answer: '30%', type: 'text', solution: '90/300 · 100 = 30%\n\n✅ Ответ: 30%' },
+                { id: 14, category: 'Процентное отношение', text: 'Число 120 составляет сколько процентов от 480?', answer: '25%', type: 'text', solution: '120/480 · 100 = 25%\n\n✅ Ответ: 25%' },
+                { id: 15, category: 'Процентное отношение', text: 'Из 80 страниц книги ученик прочитал 64. Какой процент книги он прочитал?', answer: '80%', type: 'text', solution: '64/80 · 100 = 80%\n\n✅ Ответ: 80%' }
+            ],
+            7: [
+                { id: 1, category: 'Проценты от числа', text: 'Найди 17% от 460.', answer: 78.2, type: 'number', solution: '1) 17% = 17/100 = 0,17\n2) 460 · 0,17 = 78,2\n\n✅ Ответ: 78,2' },
+                { id: 2, category: 'Проценты от числа', text: 'В магазине цена товара — 1200 рублей. На него сделали скидку 15%. Сколько рублей составляет скидка?', answer: 180, type: 'number', solution: '1) 15% = 0,15\n2) 1200 · 0,15 = 180\n\n✅ Ответ: 180 рублей' },
+                { id: 3, category: 'Проценты от числа', text: 'Турист прошёл 70 км, что составляет 80% всего маршрута. Сколько километров — весь маршрут?', answer: 87.5, type: 'number', solution: '1) 80% = 0,8\n2) 70 / 0,8 = 87,5\n\n✅ Ответ: 87,5 км' },
+                { id: 4, category: 'Проценты от числа', text: 'Ученик решил 96% заданий в контрольной, всего было 50 заданий. Сколько заданий он решил правильно?', answer: 48, type: 'number', solution: '1) 96% = 0,96\n2) 50 · 0,96 = 48\n\n✅ Ответ: 48 заданий' },
+                { id: 5, category: 'Проценты от числа', text: 'В банке начислили 3,5% годовых на вклад 40 000 рублей. Сколько составили проценты за год?', answer: 1400, type: 'number', solution: '1) 3,5% = 0,035\n2) 40000 · 0,035 = 1400\n\n✅ Ответ: 1400 рублей' },
+                { id: 6, category: 'Число по проценту', text: '12% от суммы составляют 96 рублей. Найди всю сумму.', answer: 800, type: 'number', solution: '1) 12% = 0,12\n2) 96 / 0,12 = 800\n\n✅ Ответ: 800 рублей' },
+                { id: 7, category: 'Число по проценту', text: '8% от некоторого числа равны 64. Чему равно это число?', answer: 800, type: 'number', solution: '1) 8% = 0,08\n2) 64 / 0,08 = 800\n\n✅ Ответ: 800' },
+                { id: 8, category: 'Число по проценту', text: 'На экзамене ученик правильно выполнил задания, что составило 75% от общего количества. Он решил 45 заданий. Сколько всего заданий было?', answer: 60, type: 'number', solution: '1) 75% = 0,75\n2) 45 / 0,75 = 60\n\n✅ Ответ: 60 заданий' },
+                { id: 9, category: 'Число по проценту', text: '27% от суммы составляют 243 рубля. Найди сумму.', answer: 900, type: 'number', solution: '1) 27% = 0,27\n2) 243 / 0,27 = 900\n\n✅ Ответ: 900 рублей' },
+                { id: 10, category: 'Число по проценту', text: '0,5% от числа равны 2,5. Найди число.', answer: 500, type: 'number', solution: '1) 0,5% = 0,005\n2) 2,5 / 0,005 = 500\n\n✅ Ответ: 500' },
+                { id: 11, category: 'Процентное отношение', text: 'В классе 16 учеников. 12 из них сдали контрольную на «отлично». Сколько процентов это составляет?', answer: '75%', type: 'text', solution: '12/16 · 100 = 75%\n\n✅ Ответ: 75%' },
+                { id: 12, category: 'Процентное отношение', text: 'За год предприятие выпустило 4800 изделий, а в прошлом году — 4000. На сколько процентов увеличилось производство?', answer: '20%', type: 'text', solution: '1) Прирост: 4800 - 4000 = 800\n2) 800/4000 · 100 = 20%\n\n✅ Ответ: 20%' },
+                { id: 13, category: 'Процентное отношение', text: 'Ученик прочитал 135 страниц из 180. Какой это процент от всей книги?', answer: '75%', type: 'text', solution: '135/180 · 100 = 75%\n\n✅ Ответ: 75%' },
+                { id: 14, category: 'Процентное отношение', text: 'Из 250 человек проголосовали 195. Какой процент принял участие в голосовании?', answer: '78%', type: 'text', solution: '195/250 · 100 = 78%\n\n✅ Ответ: 78%' },
+                { id: 15, category: 'Процентное отношение', text: 'У фермера было 120 кг яблок, он продал 84 кг. Какой процент урожая он продал?', answer: '70%', type: 'text', solution: '84/120 · 100 = 70%\n\n✅ Ответ: 70%' }
+            ],
+            8: [
+                { id: 1, category: 'Проценты от числа', text: 'Цена товара — 6000 рублей. Сначала скидка 20%, затем оставшуюся сумму уменьшили ещё на 10%. Какова итоговая цена?', answer: 4320, type: 'number', solution: '1) Скидка 20%: 6000 · 0,8 = 4800 рублей\n2) Скидка 10% от 4800: 4800 · 0,9 = 4320 рублей\n\n✅ Ответ: 4320 рублей' },
+                { id: 2, category: 'Проценты от числа', text: 'Сотруднику повысили зарплату на 15%. Через месяц её увеличили ещё на 10%. Зарплата была 40 000 руб. Какая стала зарплата?', answer: 50600, type: 'number', solution: '1) 40000 · 1,15 = 46000\n2) 46000 · 1,10 = 50600 руб.\n\n✅ Ответ: 50600 рублей' },
+                { id: 3, category: 'Проценты от числа', text: 'Вклад 80 000 руб. увеличивается на 6% годовых. Какая сумма будет через 2 года (проценты в конце года)?', answer: 89888, type: 'number', solution: '1) 80000 · 1,06 = 84800\n2) 84800 · 1,06 = 89888 руб.\n\n✅ Ответ: 89888 рублей' },
+                { id: 4, category: 'Проценты от числа', text: 'За год цена бензина выросла на 12%, затем снизилась на 5%. Итоговая цена, если 1 л стоил 50 руб?', answer: 53.2, type: 'number', solution: '1) 50 · 1,12 = 56\n2) 56 · 0,95 = 53,2 руб.\n\n✅ Ответ: 53,2 рубля' },
+                { id: 5, category: 'Проценты от числа', text: 'Школьный турпоход стоил 1500 руб. Спонсоры оплатили 40%, остаток разделили между 5 участниками. Сколько заплатил каждый?', answer: 180, type: 'number', solution: '1) 1500 · 0,6 = 900\n2) 900 / 5 = 180 руб.\n\n✅ Ответ: 180 рублей' },
+                { id: 6, category: 'Число по проценту', text: '18% от суммы составляют 1440 руб. Сумму уменьшили на 10%. Найди сумму после уменьшения.', answer: 7200, type: 'number', solution: '1) 1440 / 0,18 = 8000\n2) 8000 · 0,9 = 7200 руб.\n\n✅ Ответ: 7200 рублей' },
+                { id: 7, category: 'Число по проценту', text: '8% от числа = 320. Число уменьшили на 25%, потом вернули к начальному значению. Какова итоговая величина?', answer: 4000, type: 'number', solution: '1) 320 / 0,08 = 4000\n2) 4000 · 0,75 = 3000, вернули: 4000\n\n✅ Ответ: 4000' },
+                { id: 8, category: 'Число по проценту', text: 'После увеличения на 20% число стало 180. Найди исходное число. Затем увеличь его ещё на 15% (от исходного).', answer: 172.5, type: 'number', solution: '1) 180 / 1,2 = 150\n2) 150 · 1,15 = 172,5\n\n✅ Ответ: 172,5' },
+                { id: 9, category: 'Число по проценту', text: 'После уменьшения на 30% масса коробки стала 21 кг. Найди массу до уменьшения.', answer: 30, type: 'number', solution: '21 / 0,7 = 30 кг\n\n✅ Ответ: 30 кг' },
+                { id: 10, category: 'Число по проценту', text: 'Цену уменьшили на 10%, она стала 270 руб. Затем цену подняли на 10% от новой цены. Какова новая цена?', answer: 297, type: 'number', solution: '1) 270 / 0,9 = 300\n2) 270 · 1,1 = 297 руб.\n\n✅ Ответ: 297 рублей' },
+                { id: 11, category: 'Процентное отношение', text: 'В классе 32 ученика: 20 занимаются спортом, 12 — музыкой. Сколько % занимаются спортом и сколько % музыкой?', answer: '62.5% и 37.5%', type: 'text', solution: '1) Спорт: 20/32 · 100 = 62,5%\n2) Музыка: 12/32 · 100 = 37,5%\n\n✅ Ответ: 62,5% и 37,5%' },
+                { id: 12, category: 'Процентное отношение', text: 'Иван: 84 из 120, Мария: 90 из 150. У кого результат выше в % и на сколько?', answer: 'Иван на 10%', type: 'text', solution: '1) Иван: 84/120 = 70%\n2) Мария: 90/150 = 60%\n3) Иван выше на 10%\n\n✅ Ответ: Иван на 10%' },
+                { id: 13, category: 'Процентное отношение', text: 'В первый месяц продано 360 товаров, во второй — 432. На сколько % увеличились продажи?', answer: '20%', type: 'text', solution: '(432-360)/360 · 100 = 20%\n\n✅ Ответ: 20%' },
+                { id: 14, category: 'Процентное отношение', text: 'Вес мешка уменьшили с 80 до 64 кг. На сколько % уменьшился вес?', answer: '20%', type: 'text', solution: '(80-64)/80 · 100 = 20%\n\n✅ Ответ: 20%' },
+                { id: 15, category: 'Процентное отношение', text: 'Было 500 руб. После двух покупок осталось 300 руб. На сколько % уменьшились деньги?', answer: '40%', type: 'text', solution: '(500-300)/500 · 100 = 40%\n\n✅ Ответ: 40%' }
+            ],
+            9: [
+                { id: 1, category: 'Проценты от числа', text: 'Стоимость товара — 10 000 рублей. Скидка 10%, потом ещё 15% от новой цены, затем повышение на 5%. Какова итоговая цена?', answer: 8988.75, type: 'number', solution: '1) 10000 · 0,9 = 9000\n2) 9000 · 0,85 = 7650\n3) 7650 · 1,05 = 8988,75 руб.\n\n✅ Ответ: 8988,75 рублей' },
+                { id: 2, category: 'Проценты от числа', text: 'Турист прошёл 25% маршрута в первый день, 40% оставшегося — во второй, оставшиеся 90 км — в третий. Весь маршрут?', answer: 200, type: 'number', solution: '1) После 1 дня осталось 75%\n2) Во 2 день прошёл 40% от 75% = 30% всего пути\n3) За два дня 55%, осталось 45% = 90 км\n4) Весь путь: 90/0,45 = 200 км\n\n✅ Ответ: 200 км' },
+                { id: 3, category: 'Проценты от числа', text: 'Кредит 500 000 руб. под 10% годовых. Через год начислены проценты, затем на общую сумму добавлен налог 13%. Сколько заплатить?', answer: 621500, type: 'number', solution: '1) 500000 · 1,1 = 550000\n2) 550000 · 1,13 = 621500 руб.\n\n✅ Ответ: 621500 рублей' },
+                { id: 4, category: 'Проценты от числа', text: 'Банк начисляет 7% годовых. Какая сумма будет через 3 года, если вложить 100 000 руб. (сложные проценты)?', answer: 122504.3, type: 'number', solution: '100000 · 1,07³ = 122504,3 руб.\n\n✅ Ответ: 122504,3 рублей' },
+                { id: 5, category: 'Проценты от числа', text: 'Наценка 20%, затем скидка 15% от розничной цены. Себестоимость 1600 руб. Итоговая цена?', answer: 1632, type: 'number', solution: '1) 1600 · 1,2 = 1920\n2) 1920 · 0,85 = 1632 руб.\n\n✅ Ответ: 1632 рубля' },
+                { id: 6, category: 'Число по проценту', text: 'После двух снижений цены на 20% и 25% товар стал стоить 600 руб. Найдите исходную цену.', answer: 1000, type: 'number', solution: '1) 0,8 · 0,75 = 0,6\n2) 600 / 0,6 = 1000 руб.\n\n✅ Ответ: 1000 рублей' },
+                { id: 7, category: 'Число по проценту', text: 'Число увеличили на 40%, потом уменьшили на 20% и получили 336. Найди исходное число.', answer: 300, type: 'number', solution: '1) 1,4 · 0,8 = 1,12\n2) 336 / 1,12 = 300\n\n✅ Ответ: 300' },
+                { id: 8, category: 'Число по проценту', text: 'После увеличения на 25% и ещё на 10% сумма стала 990 руб. Найди исходную сумму.', answer: 720, type: 'number', solution: '1) 1,25 · 1,1 = 1,375\n2) 990 / 1,375 = 720 руб.\n\n✅ Ответ: 720 рублей' },
+                { id: 9, category: 'Число по проценту', text: 'После трёх последовательных уменьшений на 10% товар стал стоить 6561 руб. Первоначальная цена?', answer: 9000, type: 'number', solution: '1) 0,9³ = 0,729\n2) 6561 / 0,729 = 9000 руб.\n\n✅ Ответ: 9000 рублей' },
+                { id: 10, category: 'Число по проценту', text: '15% от суммы = 270 руб. Найдите сумму, увеличьте на 12%, затем уменьшите на 20%.', answer: 1612.8, type: 'number', solution: '1) 270/0,15 = 1800\n2) 1800 · 1,12 = 2016\n3) 2016 · 0,8 = 1612,8 руб.\n\n✅ Ответ: 1612,8 рублей' },
+                { id: 11, category: 'Процентное отношение', text: 'За полгода предприятие выпустило 8400 изделий, в предыдущем — 9600. На сколько % сократилось производство?', answer: '12.5%', type: 'text', solution: '(9600-8400)/9600 · 100 = 12,5%\n\n✅ Ответ: 12,5%' },
+                { id: 12, category: 'Процентное отношение', text: 'В классе 24 ученика. 18 сдали на 4-5. Через месяц 2 улучшили оценки. Какой % теперь сдал хорошо?', answer: '83.33%', type: 'text', solution: '(18+2)/24 · 100 = 83,33%\n\n✅ Ответ: 83,33%' },
+                { id: 13, category: 'Процентное отношение', text: 'Стоимость оборудования снизилась с 2 млн до 1,56 млн. На сколько % произошло снижение?', answer: '22%', type: 'text', solution: '(2-1,56)/2 · 100 = 22%\n\n✅ Ответ: 22%' },
+                { id: 14, category: 'Процентное отношение', text: 'Сотрудник отработал 168 часов, из них 42 — в выходные. Какой % времени пришёлся на выходные?', answer: '25%', type: 'text', solution: '42/168 · 100 = 25%\n\n✅ Ответ: 25%' },
+                { id: 15, category: 'Процентное отношение', text: 'Инвестировал 120 000 руб. За 3 года получил 45 000 руб. прибыли. Какой это % в год (среднегодовой)?', answer: '12.5%', type: 'text', solution: '1) 45000/120000 · 100 = 37,5%\n2) 37,5/3 = 12,5%\n\n✅ Ответ: 12,5% годовых' }
+            ]
+        };
+
+        // Состояние для всех задач
+        const state = {};
+
+        // Инициализация состояния
+        function initState() {
+            for (let cls in taskBanks) {
+                taskBanks[cls].forEach((_, idx) => {
+                    const key = cls + '-' + idx;
+                    state[key] = { attempts: 0, isCorrect: false, isRevealed: false, isFailed: false };
+                });
+            }
+        }
+        initState();
+
+        // Рендер одной задачи (без кнопки сброса)
+        function renderTask(task, cls, idx) {
+            const key = cls + '-' + idx;
+            const st = state[key];
+            const card = document.createElement('div');
+            card.className = 'task-card';
+            card.dataset.key = key;
+
+            const header = document.createElement('div');
+            header.className = 'task-header';
+            header.innerHTML = `
+                <span class="task-id">Задача ${task.id}</span>
+                <span class="task-category">${task.category}</span>
+            `;
+            card.appendChild(header);
+
+            const text = document.createElement('div');
+            text.className = 'task-text';
+            text.textContent = task.text;
+            card.appendChild(text);
+
+            const answerArea = document.createElement('div');
+            answerArea.className = 'answer-area';
+
+            const inputGroup = document.createElement('div');
+            inputGroup.className = 'input-group';
+            const label = document.createElement('label');
+            label.textContent = 'Ответ:';
+            const input = document.createElement('input');
+            input.type = task.type === 'number' ? 'number' : 'text';
+            input.step = 'any';
+            input.placeholder = task.type === 'number' ? 'Введите число' : 'Введите ответ';
+            input.className = 'task-input';
+            input.id = `input-${key}`;
+            input.autocomplete = 'off';
+            inputGroup.appendChild(label);
+            inputGroup.appendChild(input);
+            answerArea.appendChild(inputGroup);
+
+            const attemptBadge = document.createElement('span');
+            attemptBadge.className = 'attempt-badge';
+            attemptBadge.id = `attempt-${key}`;
+            attemptBadge.textContent = `попыток: 0 / 3`;
+            answerArea.appendChild(attemptBadge);
+            card.appendChild(answerArea);
+
+            const btnGroup = document.createElement('div');
+            btnGroup.className = 'btn-group';
+
+            const checkBtn = document.createElement('button');
+            checkBtn.className = 'btn btn-primary';
+            checkBtn.textContent = '✓ Проверить';
+            checkBtn.id = `check-${key}`;
+
+            const solveBtn = document.createElement('button');
+            solveBtn.className = 'btn btn-success';
+            solveBtn.textContent = '📖 Решение';
+            solveBtn.id = `solve-${key}`;
+            solveBtn.disabled = true;
+
+            btnGroup.appendChild(checkBtn);
+            btnGroup.appendChild(solveBtn);
+            card.appendChild(btnGroup);
+
+            const feedback = document.createElement('div');
+            feedback.className = 'feedback';
+            feedback.id = `feedback-${key}`;
+            feedback.innerHTML = `<span style="color:#6c889e;">⬅️ Введите ответ и нажмите "Проверить"</span>`;
+            card.appendChild(feedback);
+
+            // Обработчики
+            checkBtn.addEventListener('click', () => handleCheck(key, cls, idx));
+            solveBtn.addEventListener('click', () => handleSolve(key));
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    handleCheck(key, cls, idx);
+                }
+            });
+
+            updateUI(key);
+            return card;
+        }
+
+        // Обработчики (без сброса)
+        function handleCheck(key, cls, idx) {
+            const task = taskBanks[cls][idx];
+            const st = state[key];
+            const inputEl = document.getElementById(`input-${key}`);
+            if (!inputEl) return;
+
+            if (st.isCorrect) {
+                setFeedback(key, '✅ Задача уже решена верно!', 'success');
+                return;
+            }
+            if (st.isFailed) {
+                setFeedback(key, '❌ Задача решена неверно!', 'danger');
+                return;
+            }
+            if (st.attempts >= 3) {
+                st.isFailed = true;
+                setFeedback(key, '❌ Задача решена неверно!', 'danger');
+                document.getElementById(`solve-${key}`).disabled = false;
+                updateUI(key);
+                return;
+            }
+
+            const userAnswer = inputEl.value.trim();
+            if (userAnswer === '') {
+                setFeedback(key, '✏️ Введите ответ.', 'warning');
+                return;
+            }
+
+            let isAnswerCorrect = false;
+            const correctAnswer = task.answer;
+
+            if (task.type === 'number') {
+                const numUser = parseFloat(userAnswer.replace(',', '.').replace(/\s/g, ''));
+                if (!isNaN(numUser)) {
+                    isAnswerCorrect = Math.abs(numUser - correctAnswer) < 0.01;
+                }
+            } else {
+                const normUser = userAnswer.toLowerCase().replace(/\s+/g, ' ').trim();
+                const normCorrect = String(correctAnswer).toLowerCase().replace(/\s+/g, ' ').trim();
+                if (normUser === normCorrect) {
+                    isAnswerCorrect = true;
+                } else {
+                    const numMatch = userAnswer.match(/(\d+\.?\d*)/);
+                    const numCorrect = String(correctAnswer).match(/(\d+\.?\d*)/);
+                    if (numMatch && numCorrect) {
+                        const uNum = parseFloat(numMatch[0]);
+                        const cNum = parseFloat(numCorrect[0]);
+                        if (!isNaN(uNum) && !isNaN(cNum) && Math.abs(uNum - cNum) < 0.01) {
+                            const hasPercentUser = userAnswer.includes('%');
+                            const hasPercentCorrect = String(correctAnswer).includes('%');
+                            if (hasPercentUser === hasPercentCorrect) {
+                                isAnswerCorrect = true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            st.attempts += 1;
+
+            if (isAnswerCorrect) {
+                st.isCorrect = true;
+                setFeedback(key, '✅ <strong>Правильно! Отлично!</strong>', 'success');
+                document.getElementById(`solve-${key}`).disabled = false;
+                updateUI(key);
+                return;
+            } else {
+                const remaining = 3 - st.attempts;
+                let msg = `❌ Неверно. Попытка ${st.attempts} из 3.`;
+                if (remaining > 0) msg += ` Осталось попыток: ${remaining}`;
+                setFeedback(key, msg, 'danger');
+                if (st.attempts >= 3) {
+                    st.isFailed = true;
+                    document.getElementById(`solve-${key}`).disabled = false;
+                    setFeedback(key, '❌ Задача решена неверно!', 'danger');
+                }
+                updateUI(key);
+            }
+        }
+
+        function handleSolve(key) {
+            const st = state[key];
+            if (!st.isCorrect && !st.isFailed) {
+                document.getElementById(`solve-${key}`).disabled = true;
+                return;
+            }
+            const feedbackEl = document.getElementById(`feedback-${key}`);
+            let sol = '';
+            for (let cls in taskBanks) {
+                const idx = taskBanks[cls].findIndex((_, i) => (cls + '-' + i) === key);
+                if (idx !== -1) {
+                    sol = taskBanks[cls][idx].solution || 'Решение не предоставлено.';
+                    break;
+                }
+            }
+            let html = `<span class="status-msg text-info">💡 <strong>Решение:</strong></span>`;
+            html += `<div class="solution-block">${sol}</div>`;
+            feedbackEl.innerHTML = html;
+            st.isRevealed = true;
+        }
+
+        function updateUI(key) {
+            const st = state[key];
+            const badge = document.getElementById(`attempt-${key}`);
+            if (badge) badge.textContent = `попыток: ${st.attempts} / 3`;
+            const solveBtn = document.getElementById(`solve-${key}`);
+            if (solveBtn) solveBtn.disabled = !(st.isCorrect || st.isFailed);
+        }
+
+        function setFeedback(key, message, type = 'info') {
+            const el = document.getElementById(`feedback-${key}`);
+            if (!el) return;
+            let colorClass = '';
+            if (type === 'success') colorClass = 'text-success';
+            else if (type === 'danger') colorClass = 'text-danger';
+            else if (type === 'warning') colorClass = 'text-warning';
+            else colorClass = 'text-info';
+            el.innerHTML = `<span class="status-msg ${colorClass}">${message}</span>`;
+        }
+
+        // Рендер всех классов
+        function renderAll(activeClass = '6') {
+            const container6 = document.getElementById('class6');
+            const container7 = document.getElementById('class7');
+            const container8 = document.getElementById('class8');
+            const container9 = document.getElementById('class9');
+
+            container6.innerHTML = '';
+            container7.innerHTML = '';
+            container8.innerHTML = '';
+            container9.innerHTML = '';
+
+            let header6 = document.createElement('div');
+            header6.className = 'class-label';
+            header6.innerHTML = '6 класс <small>базовые задачи</small>';
+            container6.appendChild(header6);
+            taskBanks[6].forEach((task, idx) => {
+                container6.appendChild(renderTask(task, 6, idx));
+            });
+
+            let header7 = document.createElement('div');
+            header7.className = 'class-label';
+            header7.innerHTML = '7 класс <small>повышенный уровень</small>';
+            container7.appendChild(header7);
+            taskBanks[7].forEach((task, idx) => {
+                container7.appendChild(renderTask(task, 7, idx));
+            });
+
+            let header8 = document.createElement('div');
+            header8.className = 'class-label';
+            header8.innerHTML = '8 класс <small>сложные проценты</small>';
+            container8.appendChild(header8);
+            taskBanks[8].forEach((task, idx) => {
+                container8.appendChild(renderTask(task, 8, idx));
+            });
+
+            let header9 = document.createElement('div');
+            header9.className = 'class-label';
+            header9.innerHTML = '9 класс <small>практико-ориентированные</small>';
+            container9.appendChild(header9);
+            taskBanks[9].forEach((task, idx) => {
+                container9.appendChild(renderTask(task, 9, idx));
+            });
+
+            showClass(activeClass);
+        }
+
+        function showClass(cls) {
+            const sections = document.querySelectorAll('.class-section');
+            sections.forEach(el => el.classList.add('hidden'));
+            if (cls === 'all') {
+                sections.forEach(el => el.classList.remove('hidden'));
+            } else {
+                const target = document.getElementById('class' + cls);
+                if (target) target.classList.remove('hidden');
+            }
+            document.querySelectorAll('.nav-class a').forEach(a => a.classList.remove('active'));
+            const link = document.querySelector(`.nav-class a[data-class="${cls}"]`);
+            if (link) link.classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            renderAll('6');
+
+            document.querySelectorAll('.nav-class a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const cls = this.dataset.class;
+                    showClass(cls);
+                });
+            });
+        });
+
+    })();
+ 
+</script>
+</body>
+</html>

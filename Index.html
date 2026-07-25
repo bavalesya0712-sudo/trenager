@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Математический тренажер "Проценты"</title>
+    <style>
+        /* Общие настройки страницы */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9; /* Светлый фон страницы */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Блок заголовка */
+        header {
+            width: 100%;
+            background-color: #ffffff;
+            text-align: center;
+            padding: 20px 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            z-index: 10;
+        }
+
+        h1 {
+            margin: 0;
+            color: #2c3e50;
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Контейнер для карты и кнопок */
+        .map-container {
+            position: relative; /* Важно для позиционирования кнопок внутри */
+            width: 95%; /* Ширина контейнера (можно менять) */
+            max-width: 1200px; /* Максимальная ширина, чтобы не растягивалось слишком сильно */
+            margin-bottom: 40px;
+        }
+
+        /* Само изображение карты */
+        .map-image {
+            width: 100%; /* Занимает всю ширину контейнера */
+            height: auto; /* Высота подстраивается автоматически */
+            display: block;
+            border-radius: 15px; /* Скругленные углы картинки */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2); /* Тень для объема */
+        }
+
+        /* Общий стиль для всех кнопок */
+        .nav-btn {
+            position: absolute; /* Абсолютное позиционирование относительно карты */
+            transform: translate(-50%, -50%); /* Центрирование кнопки по точке координат */
+            
+            padding: 12px 20px;
+            border: 3px solid white;
+            border-radius: 50px; /* Овальная форма */
+            
+            color: white;
+            font-weight: bold;
+            font-size: 14px; /* Размер текста на кнопке */
+            text-align: center;
+            text-decoration: none;
+            
+            cursor: pointer;
+            transition: all 0.3s ease; /* Плавная анимация */
+            
+            /* Тень текста для читаемости */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            
+            /* Чтобы текст не вылезал на маленьких экранах */
+            white-space: nowrap; 
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 180px; 
+        }
+
+        /* Эффекты при наведении */
+        .nav-btn:hover {
+            transform: translate(-50%, -50%) scale(1.15); /* Увеличение */
+            z-index: 100; /* Поверх всего */
+            box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+        }
+
+        /* Цвета кнопок под области */
+        
+        /* Витебск (Синий) */
+        .btn-vitebsk {
+            top: 20%; left: 65%;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+        }
+
+        /* Гродно (Желтый/Оранжевый) */
+        .btn-grodno {
+            top: 50%; left: 29%;
+            background: linear-gradient(135deg, #ffc107, #ff9800);
+            color: #333; /* Темный текст для желтого фона */
+            text-shadow: none;
+        }
+
+        /* Могилев (Зеленый светлый) */
+        .btn-mogilev {
+            top: 52%; left: 78%;
+            background: linear-gradient(135deg, #28a745, #1e7e34);
+        }
+
+        /* Минск (Центр, Голубой/Бирюзовый) */
+        .btn-minsk {
+            top: 49%; left: 48%;
+            background: linear-gradient(135deg, #17a2b8, #117a8b);
+            font-size: 16px; /* Чуть крупнее, так как центральная */
+            padding: 15px 25px;
+        }
+
+        /* Брест (Низ лево, Темно-зеленый) */
+        .btn-brest {
+            top: 75%; left: 32%;
+            background: linear-gradient(135deg, #218838, #145523);
+        }
+
+        /* Гомель (Низ право, Красный) */
+        .btn-gomel {
+            top: 78%; left: 70%;
+            background: linear-gradient(135deg, #dc3545, #a71d2a);
+        }
+
+        /* Адаптивность для мобильных телефонов */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.5rem; }
+            .nav-btn { 
+                font-size: 10px; 
+                padding: 8px 12px; 
+                max-width: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Заголовок сверху -->
+    <header>
+        <h1>Математический тренажер "Проценты"</h1>
+    </header>
+
+    <!-- Область с картой -->
+    <div class="map-container">
+        <!-- ВАЖНО: Замените 'map.jpg' на имя вашего файла с картинкой -->
+        <img src="belarus_map.png" class="map-image">
+
+        <!-- Кнопки навигации -->
+        <!-- Координаты top/left подобраны примерно под ваше фото -->
+        
+        <a href="Pravilo1.html" class="nav-btn btn-vitebsk">Правило 1</a>
+        
+        <a href="Pravilo2.html" class="nav-btn btn-grodno">Правило 2</a>
+        
+        <a href="Pravilo3.html" class="nav-btn btn-mogilev">Правило 3</a>
+        
+        <a href="Zadaha.html" class="nav-btn btn-minsk">Простые задачи</a>
+        
+        <a href="complex_tasks.html" class="nav-btn btn-brest">Сложные задачи</a>
+        
+        <a href="practice_tasks.html" class="nav-btn btn-gomel">Практико-ориент.<br>задачи</a>
+    </div>
+
+</body>
+</html>
+
